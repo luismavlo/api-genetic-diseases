@@ -8,7 +8,7 @@ const geneticController = require('./genetic-diseases.controller')
 const saludo1 = (req ,res ,next) => {
    const saludo1 = "hola soy el saludo 1"
 
-   req.saludo1 = saludo1
+   req.saludo1 = saludo1;
    next();
 }
 //TODO: saludo 2 se debe ejecutar solo para la ruta patch y delete y en ese controlador se debera
@@ -16,7 +16,7 @@ const saludo1 = (req ,res ,next) => {
 const saludo2 = (req,res,next) => {
   const saludo1 = "hola soy el saludo 1"
 
-  req.saludo1 = saludo1
+  req.saludo1 = saludo1;
   next();
 }
 
