@@ -2,12 +2,13 @@
 
 //definicion de funciones
 exports.findAll = (req, res) => {
-  const { requestTime } = req;
+  const { requestTime, saludo1 } = req;
   
 
   return res.status(200).json({
     message: 'method get - findAll',
-    requestTime
+    requestTime,
+    saludo1
   })
 }
 
@@ -34,24 +35,26 @@ exports.findOne = (req, res) => {
 }
 
 exports.update = (req, res) => {
-  const { requestTime } = req;
+  const { requestTime, saludo2 } = req;
   const { id } = req.params;
 
   return res.status(200).json({
     message: 'method patch - update',
     id,
-    requestTime
+    requestTime,
+    saludo2
   })
 }
 
 exports.deleteGeneticDiseases = (req, res) => {
-  const { requestTime } = req;
+  const { requestTime, saludo2 } = req;
   const { id } = req.params;
 
   return res.status(200).json({
     message: 'method delete - delete',
     id,
-    requestTime
+    requestTime,
+    saludo2
   })
 }
 

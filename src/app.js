@@ -19,12 +19,5 @@ app.use(calculateRequestTime)
 
 app.use('/api/v1', geneticDiseases)
 
-//4.poner a escuchar el servidor por un puerto
-app.listen(3000, () => {
-  console.log("Server running on port: " + 3000)
-})
-
-//servidor local -> direccion ip de loopback
-//127.0.0.1 -> localhost
-//localhost:3000
+module.exports = app;
 
