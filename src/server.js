@@ -1,7 +1,7 @@
 const app = require('./app')
+const { envs } = require('./config/enviroments/enviroments')
 
-const contaseña = 'contraseñasecretaymuysecretabuajaja'
-
-app.listen(3000, () => {
-  console.log("Server running on port: " + 3000)
+app.listen(envs.PORT, () => {
+  console.log("Server running on port: " + envs.PORT)
 })
+
