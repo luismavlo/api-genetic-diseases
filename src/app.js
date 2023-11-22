@@ -1,6 +1,6 @@
 //1. importar express
 const express = require('express');
-const geneticDiseases = require('./genetic-diseases/genetic-diseases.route')
+const geneticDiseasesRouter = require('./genetic-diseases/genetic-diseases.route')
 
 //2. crearnos una constante app que tendra
 //todas las funcionalidades de express
@@ -17,7 +17,7 @@ app.use(express.json()); //permitir poder obtener el body en formato json
 app.use(express.urlencoded({ extended: true })); //permitir poder obtener el body en formato url-encoded
 app.use(calculateRequestTime)
 
-app.use('/api/v1', geneticDiseases)
+app.use('/api/v1', geneticDiseasesRouter)
 
 module.exports = app;
 

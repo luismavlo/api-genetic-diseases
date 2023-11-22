@@ -16,6 +16,7 @@ const authenticated = async() => {
 
 const syncUp = async() => {
   try {
+    //el {force:true} sirve para forzar los cambios a mi base de datos
     await sequelize.sync()
     console.log('Connection has been synced successfully. 👌')
   } catch (error) {

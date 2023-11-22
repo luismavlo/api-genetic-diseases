@@ -1,25 +1,33 @@
+const GeneticDiseasesServices = require("./genetic-diseases.service");
 
 
 //definicion de funciones
-exports.findAll = (req, res) => {
-  const { requestTime, saludo1 } = req;
+exports.findAll = async(req, res) => {
+  const { requestTime } = req;
   
+  const geneticDiseases = await GeneticDiseasesServices.findAll()
 
   return res.status(200).json({
-    message: 'method get - findAll',
     requestTime,
-    saludo1
+    geneticDiseases
   })
 }
 
-exports.create = (req, res) => {
+exports.create = async(req, res) => {
   const { requestTime } = req;
-  const disease = req.body;
+  const { name, description, mortalityRate, treatment, symptoms } = req.body;
+
+  const geneticDiseases = await GeneticDiseasesServices.create({ 
+    name, 
+    description, 
+    mortalityRate, 
+    treatment, 
+    symptoms 
+  })
 
   return res.status(201).json({
-    message: 'method post - create',
-    data: disease,
-    requestTime
+    requestTime,
+    data: geneticDiseases
   })
 }
 
