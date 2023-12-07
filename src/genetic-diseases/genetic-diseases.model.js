@@ -1,33 +1,37 @@
-const { DataTypes } = require('sequelize')
-const { sequelize } = require('./../config/database/datatabase.js')
+const { DataTypes } = require("sequelize");
+const { sequelize } = require("./../config/database/datatabase.js");
 
-const GeneticDiseases = sequelize.define('genetic_diseases', {
+const GeneticDiseases = sequelize.define("genetic_diseases", {
   id: {
     primaryKey: true,
     autoIncrement: true,
     type: DataTypes.INTEGER,
-    allowNull: false
+    allowNull: false,
   },
   name: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: false,
+  },
+  specie: {
+    type: DataTypes.STRING,
+    allowNull: false,
   },
   description: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: false,
   },
   cause: {
     type: DataTypes.STRING,
-    allowNull: true
-  },
-  mortalityRate: { 
-    type: DataTypes.FLOAT,  
     allowNull: true,
-    field: 'mortality_rate'
+  },
+  mortalityRate: {
+    type: DataTypes.FLOAT,
+    allowNull: true,
+    field: "mortality_rate",
   },
   treatment: {
     type: DataTypes.TEXT,
-    allowNull: true
+    allowNull: true,
   },
   symptoms: {
     type: DataTypes.STRING,
@@ -36,13 +40,13 @@ const GeneticDiseases = sequelize.define('genetic_diseases', {
   handicap: {
     type: DataTypes.BOOLEAN,
     allowNull: false,
-    defaultValue: false
+    defaultValue: false,
   },
   status: {
-    type: DataTypes.ENUM('active','inactive'),
+    type: DataTypes.ENUM("active", "inactive"),
     allowNull: false,
-    defaultValue: 'active'
-  }
-})
+    defaultValue: "active",
+  },
+});
 
-module.exports = GeneticDiseases
+module.exports = GeneticDiseases;

@@ -1,110 +1,114 @@
 const GeneticDiseasesServices = require("./genetic-diseases.service");
 
-
 //definicion de funciones
-exports.findAll = async(req, res) => {
+exports.findAll = async (req, res) => {
   try {
     const { requestTime } = req;
-  
-    const geneticDiseases = await GeneticDiseasesServices.findAll()
+    const { specie } = req.query;
+
+    const geneticDiseases = await GeneticDiseasesServices.findAll(specie);
 
     return res.status(200).json({
       requestTime,
-      geneticDiseases
-    })
+      geneticDiseases,
+    });
   } catch (error) {
     return res.status(500).json({
-      status: 'fail',
-      message: 'Something went very wrong!',
-      error
-    })
+      status: "fail",
+      message: "Something went very wrong!",
+      error,
+    });
   }
-}
+};
 
-exports.create = async(req, res) => {
+exports.create = async (req, res) => {
   const { requestTime } = req;
-  const { name, description, mortalityRate, treatment, symptoms } = req.body;
+  const { name, description, mortalityRate, treatment, symptoms, specie } =
+    req.body;
 
-  const geneticDiseases = await GeneticDiseasesServices.create({ 
-    name, 
-    description, 
-    mortalityRate, 
-    treatment, 
-    symptoms 
-  })
+  const geneticDiseases = await GeneticDiseasesServices.create({
+    name,
+    description,
+    mortalityRate,
+    treatment,
+    symptoms,
+    specie,
+  });
 
   return res.status(201).json({
     requestTime,
-    data: geneticDiseases
-  })
-}
+    data: geneticDiseases,
+  });
+};
 
 exports.findOne = async (req, res) => {
   const { requestTime } = req;
   const { id } = req.params;
 
-  const geneticDisease = await GeneticDiseasesServices.findOne(id)
+  const geneticDisease = await GeneticDiseasesServices.findOne(id);
 
-  if(!geneticDisease){
+  if (!geneticDisease) {
     return res.status(404).json({
-      status: 'error',
-      message: `Genetic Disease with id: ${ id } not found`
-    })
+      status: "error",
+      message: `Genetic Disease with id: ${id} not found`,
+    });
   }
 
   return res.status(200).json({
     requestTime,
-    geneticDisease
-  })
-}
+    geneticDisease,
+  });
+};
 
-exports.update = async(req, res) => {
+exports.update = async (req, res) => {
   try {
     const { requestTime } = req;
     const { id } = req.params;
     const { name, description } = req.body;
 
-    const geneticDisease = await GeneticDiseasesServices.findOne(id)
+    const geneticDisease = await GeneticDiseasesServices.findOne(id);
 
-    if(!geneticDisease){
+    if (!geneticDisease) {
       return res.status(404).json({
-        status: 'error',
-        message: `Genetic Disease with id: ${ id } not found`
-      })
+        status: "error",
+        message: `Genetic Disease with id: ${id} not found`,
+      });
     }
 
-    const geneticDiseaseUpdated = await GeneticDiseasesServices.update(geneticDisease, {
-      name,
-      description
-    })
+    const geneticDiseaseUpdated = await GeneticDiseasesServices.update(
+      geneticDisease,
+      {
+        name,
+        description,
+      }
+    );
 
     return res.status(200).json({
       requestTime,
-      geneticDiseaseUpdated
-    })
+      geneticDiseaseUpdated,
+    });
   } catch (error) {
     return res.status(500).json({
-      status: 'fail',
-      message: 'Something went very wrong!',
-      error
-    })
+      status: "fail",
+      message: "Something went very wrong!",
+      error,
+    });
   }
-}
+};
 
-exports.deleteGeneticDiseases = async(req, res) => {
+exports.deleteGeneticDiseases = async (req, res) => {
   const { id } = req.params;
 
-  const geneticDisease = await GeneticDiseasesServices.findOne(id)
+  const geneticDisease = await GeneticDiseasesServices.findOne(id);
 
-  if(!geneticDisease){
+  if (!geneticDisease) {
     return res.status(404).json({
-      status: 'error',
-      message: `Genetic Disease with id: ${ id } not found`
-    })
+      status: "error",
+      message: `Genetic Disease with id: ${id} not found`,
+    });
   }
 
-  await GeneticDiseasesServices.delete(geneticDisease)
+  await GeneticDiseasesServices.delete(geneticDisease);
 
-  return res.status(204).json(null)
-}
-
+  return res.status(204).json(null);
+};

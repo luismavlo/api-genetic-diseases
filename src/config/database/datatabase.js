@@ -1,31 +1,31 @@
-const { Sequelize } = require('sequelize');
-const { envs } = require('../enviroments/enviroments');
+const { Sequelize } = require("sequelize");
+const { envs } = require("../enviroments/enviroments");
 
 const sequelize = new Sequelize(envs.DB_URI, {
-  logging: false
-})
+  logging: false,
+});
 
-const authenticated = async() => {
+const authenticated = async () => {
   try {
     await sequelize.authenticate();
-    console.log("Connection has been established successfully. 😃")
+    console.log("Connection has been established successfully. 😃");
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-}
+};
 
-const syncUp = async() => {
+const syncUp = async () => {
   try {
     //el {force:true} sirve para forzar los cambios a mi base de datos
-    await sequelize.sync()
-    console.log('Connection has been synced successfully. 👌')
+    await sequelize.sync();
+    console.log("Connection has been synced successfully. 👌");
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-}
+};
 
 module.exports = {
   authenticated,
   syncUp,
-  sequelize
-}
+  sequelize,
+};
